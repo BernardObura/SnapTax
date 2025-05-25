@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SnapTax - Your Tax Assistance in a SNAP</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+</head>
+<body class="font-sans bg-gray-50 dark:bg-dark-900 text-gray-800 dark:text-gray-200 theme-transition">
+    <!-- Theme Toggle Button -->
+    <button id="theme-toggle" class="fixed bottom-6 right-6 z-50 w-12 h-12 rounded-full flex items-center justify-center bg-gray-800 text-white dark:bg-gray-200 dark:text-gray-800 shadow-lg hover:scale-110 transition-transform duration-300">
+        <i id="theme-icon" class="fas fa-moon text-xl"></i>
+    </button>
+
+    <!-- Sticky Navigation -->
+    <nav class="sticky-nav bg-white dark:bg-dark-800 shadow-md dark:shadow-gray-800">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <!-- Logo -->
+                <a href="#" class="flex items-center group" id="logo-link">
+                    <div class="logo-container rounded-full flex items-center justify-center bg-gradient-to-br from-primary-500 to-secondary-400 text-white font-bold text-2xl mr-3 hover:from-primary-600 hover:to-secondary-500 transition-colors duration-300">
+                        ST
+                    </div>
+                    <span class="text-2xl font-bold text-gray-800 dark:text-white group-hover:text-primary-500 dark:group-hover:text-secondary-400 transition-colors duration-300">SnapTax</span>
+                </a>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#" class="text-gray-800 dark:text-gray-300 hover:text-primary-500 dark:hover:text-secondary-400 font-medium transition-colors duration-300">Home</a>
+                    <a href="#" class="text-gray-800 dark:text-gray-300 hover:text-primary-500 dark:hover:text-secondary-400 font-medium transition-colors duration-300">Products</a>
+                    <a href="#" class="text-gray-800 dark:text-gray-300 hover:text-primary-500 dark:hover:text-secondary-400 font-medium transition-colors duration-300">Resources</a>
+                    <a href="#" class="text-gray-800 dark:text-gray-300 hover:text-primary-500 dark:hover:text-secondary-400 font-medium transition-colors duration-300">About Us</a>
+                    <a href="#" class="text-gray-800 dark:text-gray-300 hover:text-primary-500 dark:hover:text-secondary-400 font-medium transition-colors duration-300">Contact Us</a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-button" class="md:hidden text-gray-800 dark:text-gray-300 focus:outline-none">
+                    <svg id="menu-icon" class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                    <svg id="close-icon" class="w-8 h-8 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="mobile-menu md:hidden">
+                <div class="pt-2 pb-4 space-y-1">
+                    <a href="#" class="block px-3 py-2 text-gray-800 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md transition-colors duration-300">Home</a>
+                    <a href="#" class="block px-3 py-2 text-gray-800 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md transition-colors duration-300">Products</a>
+                    <a href="#" class="block px-3 py-2 text-gray-800 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md transition-colors duration-300">Resources</a>
+                    <a href="#" class="block px-3 py-2 text-gray-800 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md transition-colors duration-300">About Us</a>
+                    <a href="#" class="block px-3 py-2 text-gray-800 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md transition-colors duration-300">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-br from-primary-500 to-secondary-400 text-white py-16 md:py-24">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <h1 class="text-4xl md:text-5xl font-bold mb-6">Your Tax Assistance in a <span class="underline decoration-yellow-400">SNAP</span></h1>
+                    <p class="text-xl mb-8">Revolutionizing tax compliance by automating and simplifying tax calculations and return filing.</p>
+                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                        <a href="#" class="bg-white text-primary-600 hover:bg-gray-100 font-bold py-3 px-6 rounded-lg flex items-center justify-center hover-scale">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Google Play" class="h-12">
+                        </a>
+                        <a href="#" class="bg-black text-white hover:bg-gray-800 font-bold py-3 px-6 rounded-lg flex items-center justify-center hover-scale">
+                            <i class="fab fa-apple mr-2 text-xl"></i>
+                            App Store
+                        </a>
+                    </div>
+                </div>
+                <div class="md:w-1/2 flex justify-center">
+                    <img src="https://cdn-icons-png.flaticon.com/512/3594/3594131.png" alt="Tax App Illustration" class="w-64 h-64 md:w-80 md:h-80">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-16 bg-white dark:bg-dark-800">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 dark:text-white">Why Choose SnapTax?</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-gray-50 dark:bg-gray-700 p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow hover-scale">
+                    <div class="w-14 h-14 bg-gradient-to-br from-primary-500 to-secondary-400 rounded-lg flex items-center justify-center text-white mb-4">
+                        <i class="fas fa-bolt text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3 dark:text-white">Automated Calculations</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Our system automatically calculates your taxes, minimizing human errors and ensuring accuracy.</p>
+                </div>
+                <div class="bg-gray-50 dark:bg-gray-700 p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow hover-scale">
+                    <div class="w-14 h-14 bg-gradient-to-br from-primary-500 to-secondary-400 rounded-lg flex items-center justify-center text-white mb-4">
+                        <i class="fas fa-clock text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3 dark:text-white">Deadline Alerts</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Never miss a tax deadline again with our timely reminders and notifications.</p>
+                </div>
+                <div class="bg-gray-50 dark:bg-gray-700 p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow hover-scale">
+                    <div class="w-14 h-14 bg-gradient-to-br from-primary-500 to-secondary-400 rounded-lg flex items-center justify-center text-white mb-4">
+                        <i class="fas fa-shield-alt text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3 dark:text-white">Full Compliance</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Stay ahead with seamless tax management that's always up-to-date with the latest regulations.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-16 bg-gray-50 dark:bg-dark-800">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 dark:text-white">What Our Users Say</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white dark:bg-gray-700 p-6 rounded-xl shadow-sm hover-scale">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-blue-100 dark:bg-blue-900 flex items-center justify-center text-blue-600 dark:text-blue-300 mr-3">
+                            <i class="fas fa-user text-xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold dark:text-white">James Mwangi</h4>
+                            <p class="text-sm text-gray-500 dark:text-gray-400">Small Business Owner</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-300">"SnapTax has saved me countless hours of tax preparation. The automated calculations are spot on and the interface is so intuitive."</p>
+                </div>
+                <div class="bg-white dark:bg-gray-700 p-6 rounded-xl shadow-sm hover-scale">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-blue-100 dark:bg-blue-900 flex items-center justify-center text-blue-600 dark:text-blue-300 mr-3">
+                            <i class="fas fa-user text-xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold dark:text-white">Sarah Atieno</h4>
+                            <p class="text-sm text-gray-500 dark:text-gray-400">Freelancer</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-300">"As someone who dreaded tax season, SnapTax has been a game-changer. The deadline reminders alone are worth it!"</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 bg-white dark:bg-dark-800">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold mb-6 dark:text-white">Ready to Simplify Your Tax Compliance?</h2>
+            <p class="text-xl mb-8 max-w-2xl mx-auto dark:text-gray-300">Download SnapTax today and experience stress-free tax management.</p>
+            <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+                <a href="#" class="bg-primary-500 hover:bg-primary-600 text-white font-bold py-3 px-6 rounded-lg flex items-center justify-center hover-scale mx-auto sm:mx-0 transition-colors duration-300">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Google Play" class="h-12">
+                </a>
+                <a href="#" class="bg-gray-800 hover:bg-black text-white font-bold py-3 px-6 rounded-lg flex items-center justify-center hover-scale mx-auto sm:mx-0 transition-colors duration-300">
+                    <i class="fab fa-apple mr-2 text-xl"></i>
+                    App Store
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 dark:bg-dark-800 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="mb-6 md:mb-0">
+                    <a href="#" class="flex items-center mb-4 group" id="footer-logo-link">
+                        <div class="logo-container rounded-full flex items-center justify-center bg-gradient-to-br from-primary-500 to-secondary-400 text-white font-bold text-2xl mr-3 group-hover:from-primary-600 group-hover:to-secondary-500 transition-colors duration-300">
+                            ST
+                        </div>
+                        <span class="text-2xl font-bold group-hover:text-primary-500 dark:group-hover:text-secondary-400 transition-colors duration-300">SnapTax</span>
+                    </a>
+                    <p class="mb-4 text-gray-400">Your Tax Compliance in a SNAP</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">
+                            <i class="fab fa-facebook-f text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">
+                            <i class="fab fa-twitter text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">
+                            <i class="fab fa-instagram text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">
+                            <i class="fab fa-linkedin-in text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-lg font-semibold mb-4">Company</h3>
+                        <ul class="space-y-2">
+                            <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">About Us</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">Privacy Policy</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">Terms & Conditions</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold mb-4">Support</h3>
+                        <ul class="space-y-2">
+                            <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">FAQ</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Contact Us</h3>
+                    <p class="mb-2 text-gray-400">Email: info@snaptax.co.ke</p>
+                    <div class="mb-4">
+                        <p class="mb-2 text-gray-400">We Accept:</p>
+                        <div class="flex space-x-4 items-center">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/1/15/M-PESA_LOGO-01.svg" alt="M-Pesa" class="payment-icon">
+                            <img src="images/Aitel money.png" alt="Airtel Money" class="payment-icon">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" alt="Visa" class="payment-icon">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; <span id="current-year"></span> SnapTax. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
