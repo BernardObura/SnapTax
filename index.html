@@ -1,232 +1,364 @@
+
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SnapTax - Your Tax Assistance in a SNAP</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Snaptax - Your Tax Assistance in a SNAP</title>
+    <meta name="description" content="Revolutionizing tax compliance by automating and simplifying tax calculations and return filing." />
+    <meta name="author" content="Snaptax" />
+
+    <meta property="og:title" content="Snaptax - Your Tax Assistance in a SNAP" />
+    <meta property="og:description" content="Revolutionizing tax compliance by automating and simplifying tax calculations and return filing." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://images.pexels.com/photos/6863183/pexels-photo-6863183.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&dpr=2" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@snaptax" />
+    <meta name="twitter:image" content="https://images.pexels.com/photos/6863183/pexels-photo-6863183.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&dpr=2" />
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" href="https://images.pexels.com/photos/6863183/pexels-photo-6863183.jpeg?auto=compress&cs=tinysrgb&w=32&h=32&dpr=2" type="image/jpeg">
     
-</head>
-<body class="font-sans bg-gray-50 dark:bg-dark-900 text-gray-800 dark:text-gray-200 theme-transition">
-    <!-- Theme Toggle Button -->
-    <button id="theme-toggle" class="fixed bottom-6 right-6 z-50 w-12 h-12 rounded-full flex items-center justify-center bg-gray-800 text-white dark:bg-gray-200 dark:text-gray-800 shadow-lg hover:scale-110 transition-transform duration-300">
-        <i id="theme-icon" class="fas fa-moon text-xl"></i>
-    </button>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  </head>
 
-    <!-- Sticky Navigation -->
-    <nav class="sticky-nav bg-white dark:bg-dark-800 shadow-md dark:shadow-gray-800">
-        <div class="container mx-auto px-4 py-3">
-            <div class="flex justify-between items-center">
-                <!-- Logo -->
-                <a href="#" class="flex items-center group" id="logo-link">
-                    <div class="logo-container rounded-full flex items-center justify-center bg-gradient-to-br from-primary-500 to-secondary-400 text-white font-bold text-2xl mr-3 hover:from-primary-600 hover:to-secondary-500 transition-colors duration-300">
-                        ST
-                    </div>
-                    <span class="text-2xl font-bold text-gray-800 dark:text-white group-hover:text-primary-500 dark:group-hover:text-secondary-400 transition-colors duration-300">SnapTax</span>
-                </a>
+  <body class="light-theme">
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top navbar-custom" id="navbar">
+      <div class="container">
+        <a class="navbar-brand d-flex align-items-center" href="#" onclick="scrollToTop()">
+          <img src="https://images.pexels.com/photos/6863183/pexels-photo-6863183.jpeg?auto=compress&cs=tinysrgb&w=80&h=80&dpr=2" alt="Snaptax Logo">
+          <span class="brand-text">Snaptax</span>
+        </a>
 
-                <!-- Desktop Menu -->
-                <div class="hidden md:flex space-x-8 items-center">
-                    <a href="#" class="text-gray-800 dark:text-gray-300 hover:text-primary-500 dark:hover:text-secondary-400 font-medium transition-colors duration-300">Home</a>
-                    <a href="#" class="text-gray-800 dark:text-gray-300 hover:text-primary-500 dark:hover:text-secondary-400 font-medium transition-colors duration-300">Products</a>
-                    <a href="#" class="text-gray-800 dark:text-gray-300 hover:text-primary-500 dark:hover:text-secondary-400 font-medium transition-colors duration-300">Resources</a>
-                    <a href="#" class="text-gray-800 dark:text-gray-300 hover:text-primary-500 dark:hover:text-secondary-400 font-medium transition-colors duration-300">About Us</a>
-                    <a href="#" class="text-gray-800 dark:text-gray-300 hover:text-primary-500 dark:hover:text-secondary-400 font-medium transition-colors duration-300">Contact Us</a>
-                </div>
-
-                <!-- Mobile Menu Button -->
-                <button id="mobile-menu-button" class="md:hidden text-gray-800 dark:text-gray-300 focus:outline-none">
-                    <svg id="menu-icon" class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                    </svg>
-                    <svg id="close-icon" class="w-8 h-8 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                    </svg>
-                </button>
-            </div>
-
-            <!-- Mobile Menu -->
-            <div id="mobile-menu" class="mobile-menu md:hidden">
-                <div class="pt-2 pb-4 space-y-1">
-                    <a href="#" class="block px-3 py-2 text-gray-800 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md transition-colors duration-300">Home</a>
-                    <a href="#" class="block px-3 py-2 text-gray-800 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md transition-colors duration-300">Products</a>
-                    <a href="#" class="block px-3 py-2 text-gray-800 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md transition-colors duration-300">Resources</a>
-                    <a href="#" class="block px-3 py-2 text-gray-800 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md transition-colors duration-300">About Us</a>
-                    <a href="#" class="block px-3 py-2 text-gray-800 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md transition-colors duration-300">Contact Us</a>
-                </div>
-            </div>
+        <div class="d-flex align-items-center d-lg-none">
+          <button class="theme-toggle me-2" onclick="toggleTheme()">
+            <i class="fas fa-moon" id="theme-icon"></i>
+          </button>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+          </button>
         </div>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto me-4">
+            <li class="nav-item">
+              <a class="nav-link" href="#features">Features</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#about">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#contact">Contact</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#faq">FAQ</a>
+            </li>
+          </ul>
+          
+          <div class="d-none d-lg-flex align-items-center">
+            <button class="theme-toggle me-3" onclick="toggleTheme()">
+              <i class="fas fa-moon" id="theme-icon-desktop"></i>
+            </button>
+            <button class="btn btn-primary-custom">Get Started</button>
+          </div>
+          
+          <div class="d-lg-none mt-3">
+            <button class="btn btn-primary-custom w-100">Get Started</button>
+          </div>
+        </div>
+      </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="bg-gradient-to-br from-primary-500 to-secondary-400 text-white py-16 md:py-24">
-        <div class="container mx-auto px-4">
-            <div class="flex flex-col md:flex-row items-center">
-                <div class="md:w-1/2 mb-10 md:mb-0">
-                    <h1 class="text-4xl md:text-5xl font-bold mb-6">Your Tax Assistance in a <span class="underline decoration-yellow-400">SNAP</span></h1>
-                    <p class="text-xl mb-8">Revolutionizing tax compliance by automating and simplifying tax calculations and return filing.</p>
-                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-                        <a href="#" class="bg-white text-primary-600 hover:bg-gray-100 font-bold py-3 px-6 rounded-lg flex items-center justify-center hover-scale">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Google Play" class="h-12">
-                        </a>
-                        <a href="#" class="bg-black text-white hover:bg-gray-800 font-bold py-3 px-6 rounded-lg flex items-center justify-center hover-scale">
-                            <i class="fab fa-apple mr-2 text-xl"></i>
-                            App Store
-                        </a>
-                    </div>
-                </div>
-                <div class="md:w-1/2 flex justify-center">
-                    <img src="https://cdn-icons-png.flaticon.com/512/3594/3594131.png" alt="Tax App Illustration" class="w-64 h-64 md:w-80 md:h-80">
-                </div>
+    <section class="hero-section">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-6 fade-in">
+            <h1 class="hero-title">
+              Your Tax Assistance in a 
+              <span class="highlight-text">SNAP</span>
+            </h1>
+            <p class="hero-subtitle">
+              Revolutionizing tax compliance by automating and simplifying tax calculations and return filing.
+            </p>
+            
+            <!-- App Download Buttons -->
+            <div class="mb-4">
+              <a href="https://play.google.com/store" target="_blank" class="download-btn">
+                <i class="fas fa-download"></i>
+                Get it on Google Play
+              </a>
+              <a href="https://apps.apple.com" target="_blank" class="download-btn">
+                <i class="fas fa-download"></i>
+                Download on App Store
+              </a>
             </div>
+
+            <div class="stats-container">
+              <div class="d-flex align-items-center">
+                <div class="user-avatars">
+                  <img src="https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=60&h=60&dpr=2" alt="User">
+                  <img src="https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=60&h=60&dpr=2" alt="User">
+                  <img src="https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=60&h=60&dpr=2" alt="User">
+                </div>
+                <span>10,000+ users</span>
+              </div>
+              <div class="d-flex align-items-center">
+                <div class="stars">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                </div>
+                <span>4.9/5 rating</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6 fade-in">
+            <div class="hero-image">
+              <img src="https://images.pexels.com/photos/6863515/pexels-photo-6863515.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&dpr=2" alt="Tax Calculator Interface">
+              <div class="live-indicator">
+                <div class="pulse-dot"></div>
+                <span>Live Tax Calculations</span>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     </section>
 
     <!-- Features Section -->
-    <section class="py-16 bg-white dark:bg-dark-800">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center mb-12 dark:text-white">Why Choose SnapTax?</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-gray-50 dark:bg-gray-700 p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow hover-scale">
-                    <div class="w-14 h-14 bg-gradient-to-br from-primary-500 to-secondary-400 rounded-lg flex items-center justify-center text-white mb-4">
-                        <i class="fas fa-bolt text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-3 dark:text-white">Automated Calculations</h3>
-                    <p class="text-gray-600 dark:text-gray-300">Our system automatically calculates your taxes, minimizing human errors and ensuring accuracy.</p>
-                </div>
-                <div class="bg-gray-50 dark:bg-gray-700 p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow hover-scale">
-                    <div class="w-14 h-14 bg-gradient-to-br from-primary-500 to-secondary-400 rounded-lg flex items-center justify-center text-white mb-4">
-                        <i class="fas fa-clock text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-3 dark:text-white">Deadline Alerts</h3>
-                    <p class="text-gray-600 dark:text-gray-300">Never miss a tax deadline again with our timely reminders and notifications.</p>
-                </div>
-                <div class="bg-gray-50 dark:bg-gray-700 p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow hover-scale">
-                    <div class="w-14 h-14 bg-gradient-to-br from-primary-500 to-secondary-400 rounded-lg flex items-center justify-center text-white mb-4">
-                        <i class="fas fa-shield-alt text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-3 dark:text-white">Full Compliance</h3>
-                    <p class="text-gray-600 dark:text-gray-300">Stay ahead with seamless tax management that's always up-to-date with the latest regulations.</p>
-                </div>
-            </div>
+    <section id="features" class="features-section">
+      <div class="container">
+        <div class="text-center mb-5">
+          <h2 class="display-4 fw-bold mb-3">Why Choose Snaptax?</h2>
+          <p class="lead">Powerful features designed to make tax compliance effortless</p>
         </div>
+
+        <div class="row g-4">
+          <div class="col-lg-3 col-md-6">
+            <div class="feature-card fade-in">
+              <div class="feature-icon">
+                <i class="fas fa-check-circle"></i>
+              </div>
+              <h3 class="h5 fw-semibold mb-2">Automated Calculations</h3>
+              <p>Let our AI handle complex tax calculations with 99.9% accuracy</p>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <div class="feature-card fade-in">
+              <div class="feature-icon">
+                <i class="fas fa-shield-alt"></i>
+              </div>
+              <h3 class="h5 fw-semibold mb-2">Secure & Compliant</h3>
+              <p>Bank-level security ensuring your data is always protected</p>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <div class="feature-card fade-in">
+              <div class="feature-icon">
+                <i class="fas fa-clock"></i>
+              </div>
+              <h3 class="h5 fw-semibold mb-2">Quick Filing</h3>
+              <p>File your returns in under 10 minutes with our streamlined process</p>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <div class="feature-card fade-in">
+              <div class="feature-icon">
+                <i class="fas fa-users"></i>
+              </div>
+              <h3 class="h5 fw-semibold mb-2">Expert Support</h3>
+              <p>24/7 access to certified tax professionals when you need help</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <!-- Testimonials -->
-    <section class="py-16 bg-gray-50 dark:bg-dark-800">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center mb-12 dark:text-white">What Our Users Say</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="bg-white dark:bg-gray-700 p-6 rounded-xl shadow-sm hover-scale">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 rounded-full bg-blue-100 dark:bg-blue-900 flex items-center justify-center text-blue-600 dark:text-blue-300 mr-3">
-                            <i class="fas fa-user text-xl"></i>
-                        </div>
-                        <div>
-                            <h4 class="font-semibold dark:text-white">James Mwangi</h4>
-                            <p class="text-sm text-gray-500 dark:text-gray-400">Small Business Owner</p>
-                        </div>
-                    </div>
-                    <p class="text-gray-600 dark:text-gray-300">"SnapTax has saved me countless hours of tax preparation. The automated calculations are spot on and the interface is so intuitive."</p>
-                </div>
-                <div class="bg-white dark:bg-gray-700 p-6 rounded-xl shadow-sm hover-scale">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 rounded-full bg-blue-100 dark:bg-blue-900 flex items-center justify-center text-blue-600 dark:text-blue-300 mr-3">
-                            <i class="fas fa-user text-xl"></i>
-                        </div>
-                        <div>
-                            <h4 class="font-semibold dark:text-white">Sarah Atieno</h4>
-                            <p class="text-sm text-gray-500 dark:text-gray-400">Freelancer</p>
-                        </div>
-                    </div>
-                    <p class="text-gray-600 dark:text-gray-300">"As someone who dreaded tax season, SnapTax has been a game-changer. The deadline reminders alone are worth it!"</p>
-                </div>
+    <!-- About Section -->
+    <section id="about" class="about-section">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-6">
+            <div class="about-image">
+              <img src="https://images.pexels.com/photos/3760263/pexels-photo-3760263.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&dpr=2" alt="Team working on tax solutions">
             </div>
+          </div>
+          <div class="col-lg-6">
+            <h2 class="display-4 fw-bold mb-4">Revolutionizing Tax Compliance</h2>
+            <p class="lead mb-4">
+              At Snaptax, we understand that tax compliance shouldn't be a burden. Our innovative platform combines cutting-edge technology with deep understanding of Kenyan tax regulations to deliver a seamless experience.
+            </p>
+            <p class="lead mb-5">
+              Whether you're an individual taxpayer, small business owner, or corporate entity, Snaptax provides the tools and expertise you need to stay compliant while saving time and money.
+            </p>
+            <div class="row g-4">
+              <div class="col-6">
+                <div class="stat-item">
+                  <div class="stat-number">10K+</div>
+                  <div class="stat-label">Happy Users</div>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="stat-item">
+                  <div class="stat-number">99.9%</div>
+                  <div class="stat-label">Accuracy Rate</div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     </section>
 
-    <!-- CTA Section -->
-    <section class="py-16 bg-white dark:bg-dark-800">
-        <div class="container mx-auto px-4 text-center">
-            <h2 class="text-3xl font-bold mb-6 dark:text-white">Ready to Simplify Your Tax Compliance?</h2>
-            <p class="text-xl mb-8 max-w-2xl mx-auto dark:text-gray-300">Download SnapTax today and experience stress-free tax management.</p>
-            <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
-                <a href="#" class="bg-primary-500 hover:bg-primary-600 text-white font-bold py-3 px-6 rounded-lg flex items-center justify-center hover-scale mx-auto sm:mx-0 transition-colors duration-300">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Google Play" class="h-12">
-                </a>
-                <a href="#" class="bg-gray-800 hover:bg-black text-white font-bold py-3 px-6 rounded-lg flex items-center justify-center hover-scale mx-auto sm:mx-0 transition-colors duration-300">
-                    <i class="fab fa-apple mr-2 text-xl"></i>
-                    App Store
-                </a>
-            </div>
+    <!-- Testimonials Section -->
+    <section class="testimonials-section">
+      <div class="container">
+        <div class="text-center mb-5">
+          <h2 class="display-4 fw-bold mb-3">What Our Users Say</h2>
+          <p class="lead">Join thousands of satisfied customers</p>
         </div>
+
+        <div class="row g-4">
+          <div class="col-lg-4">
+            <div class="testimonial-card fade-in">
+              <div class="testimonial-stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+              <p class="testimonial-content">"Snaptax saved me hours during tax season. The automated calculations are incredibly accurate!"</p>
+              <div>
+                <div class="testimonial-author">Sarah Mwangi</div>
+                <div class="testimonial-role">Small Business Owner</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="testimonial-card fade-in">
+              <div class="testimonial-stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+              <p class="testimonial-content">"Finally, a tax solution that understands Kenyan tax laws. Highly recommended!"</p>
+              <div>
+                <div class="testimonial-author">David Kipkoech</div>
+                <div class="testimonial-role">Freelancer</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="testimonial-card fade-in">
+              <div class="testimonial-stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+              <p class="testimonial-content">"The compliance features are outstanding. Our entire team uses Snaptax now."</p>
+              <div>
+                <div class="testimonial-author">Grace Njeri</div>
+                <div class="testimonial-role">Corporate Manager</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="faq-section">
+      <div class="container">
+        <div class="text-center mb-5">
+          <h2 class="display-4 fw-bold mb-3">Frequently Asked Questions</h2>
+          <p class="lead">Everything you need to know about Snaptax</p>
+        </div>
+
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <div class="faq-item">
+              <h3 class="faq-question">Is Snaptax compliant with KRA regulations?</h3>
+              <p class="faq-answer">Yes, Snaptax is fully compliant with all KRA tax regulations and is regularly updated to reflect any changes in tax law.</p>
+            </div>
+            <div class="faq-item">
+              <h3 class="faq-question">How secure is my financial data?</h3>
+              <p class="faq-answer">We use bank-level security measures including 256-bit encryption and multi-factor authentication to protect your data.</p>
+            </div>
+            <div class="faq-item">
+              <h3 class="faq-question">Can I file returns for my business?</h3>
+              <p class="faq-answer">Absolutely! Snaptax supports both individual and business tax returns, including VAT, PAYE, and corporate tax.</p>
+            </div>
+            <div class="faq-item">
+              <h3 class="faq-question">What if I need help with my taxes?</h3>
+              <p class="faq-answer">Our certified tax professionals are available 24/7 to assist you with any questions or complex tax situations.</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 dark:bg-dark-800 text-white py-12">
-        <div class="container mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="mb-6 md:mb-0">
-                    <a href="#" class="flex items-center mb-4 group" id="footer-logo-link">
-                        <div class="logo-container rounded-full flex items-center justify-center bg-gradient-to-br from-primary-500 to-secondary-400 text-white font-bold text-2xl mr-3 group-hover:from-primary-600 group-hover:to-secondary-500 transition-colors duration-300">
-                            ST
-                        </div>
-                        <span class="text-2xl font-bold group-hover:text-primary-500 dark:group-hover:text-secondary-400 transition-colors duration-300">SnapTax</span>
-                    </a>
-                    <p class="mb-4 text-gray-400">Your Tax Compliance in a SNAP</p>
-                    <div class="flex space-x-4">
-                        <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">
-                            <i class="fab fa-facebook-f text-xl"></i>
-                        </a>
-                        <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">
-                            <i class="fab fa-twitter text-xl"></i>
-                        </a>
-                        <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">
-                            <i class="fab fa-instagram text-xl"></i>
-                        </a>
-                        <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">
-                            <i class="fab fa-linkedin-in text-xl"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="grid grid-cols-2 gap-8">
-                    <div>
-                        <h3 class="text-lg font-semibold mb-4">Company</h3>
-                        <ul class="space-y-2">
-                            <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">About Us</a></li>
-                            <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">Privacy Policy</a></li>
-                            <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">Terms & Conditions</a></li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h3 class="text-lg font-semibold mb-4">Support</h3>
-                        <ul class="space-y-2">
-                            <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">FAQ</a></li>
-                            <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">Contact</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div>
-                    <h3 class="text-lg font-semibold mb-4">Contact Us</h3>
-                    <p class="mb-2 text-gray-400">Email: info@snaptax.co.ke</p>
-                    <div class="mb-4">
-                        <p class="mb-2 text-gray-400">We Accept:</p>
-                        <div class="flex space-x-4 items-center">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/1/15/M-PESA_LOGO-01.svg" alt="M-Pesa" class="payment-icon">
-                            <img src="images/Aitel money.png" alt="Airtel Money" class="payment-icon">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" alt="Visa" class="payment-icon">
-                        </div>
-                    </div>
-                </div>
+    <footer id="contact" class="footer">
+      <div class="container">
+        <div class="row g-4">
+          <div class="col-lg-3">
+            <div class="d-flex align-items-center mb-3">
+              <img src="https://images.pexels.com/photos/6863183/pexels-photo-6863183.jpeg?auto=compress&cs=tinysrgb&w=60&h=60&dpr=2" alt="Snaptax Logo" class="footer-logo">
+              <span class="footer-brand">Snaptax</span>
             </div>
-            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-                <p>&copy; <span id="current-year"></span> SnapTax. All rights reserved.</p>
+            <p class="mb-3">Your tax compliance in a snap</p>
+            <div>
+              <p class="mb-1">info@snaptax.co.ke</p>
+              <p class="mb-0">+254 700 000 000</p>
             </div>
+          </div>
+          <div class="col-lg-3">
+            <h5>About</h5>
+            <ul class="list-unstyled">
+              <li><a href="#">Privacy Policy</a></li>
+              <li><a href="#">Terms & Conditions</a></li>
+            </ul>
+          </div>
+          <div class="col-lg-3">
+            <h5>Links</h5>
+            <ul class="list-unstyled">
+              <li><a href="#faq">FAQ</a></li>
+              <li><a href="#contact">Contact</a></li>
+            </ul>
+          </div>
+          <div class="col-lg-3">
+            <h5>We Accept</h5>
+            <ul class="list-unstyled">
+              <li>M-pesa</li>
+              <li>Airtel Money</li>
+              <li>Visa Cards</li>
+            </ul>
+          </div>
         </div>
+        
+        <hr class="my-4">
+        
+        <div class="text-center">
+          <p class="mb-0">&copy; <span id="date"></span> Snaptax. All rights reserved.</p>
+        </div>
+      </div>
     </footer>
 
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="js/script.js"></script>
-</body>
+  </body>
 </html>

@@ -1,115 +1,117 @@
-// Mobile menu toggle with X icon
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const menuIcon = document.getElementById('menu-icon');
-        const closeIcon = document.getElementById('close-icon');
 
-        mobileMenuButton.addEventListener('click', function() {
-            mobileMenu.classList.toggle('open');
-            
-            if (mobileMenu.classList.contains('open')) {
-                menuIcon.classList.add('hidden');
-                closeIcon.classList.remove('hidden');
-            } else {
-                menuIcon.classList.remove('hidden');
-                closeIcon.classList.add('hidden');
-            }
-        });
-
-        // Update footer year
-        document.getElementById('current-year').textContent = new Date().getFullYear();
-
-        // Scroll to top when logo is clicked
-        const logoLinks = document.querySelectorAll('#logo-link, #footer-logo-link');
-        logoLinks.forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
-            });
-        });
-
-        // Dark theme toggle
-        const themeToggle = document.getElementById('theme-toggle');
+      // Theme toggle functionality
+      let isDarkMode = false;
+      
+      function toggleTheme() {
+        isDarkMode = !isDarkMode;
+        const body = document.body;
         const themeIcon = document.getElementById('theme-icon');
-        const html = document.documentElement;
-
-        // Check for saved theme preference or use system preference
-        const savedTheme = localStorage.getItem('theme') || 
-                          (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        const themeIconDesktop = document.getElementById('theme-icon-desktop');
         
-        if (savedTheme === 'dark') {
-            html.classList.add('dark');
-            themeIcon.classList.replace('fa-moon', 'fa-sun');
+        if (isDarkMode) {
+          body.classList.remove('light-theme');
+          body.classList.add('dark-theme');
+          themeIcon.classList.remove('fa-moon');
+          themeIcon.classList.add('fa-sun');
+          themeIconDesktop.classList.remove('fa-moon');
+          themeIconDesktop.classList.add('fa-sun');
+        } else {
+          body.classList.remove('dark-theme');
+          body.classList.add('light-theme');
+          themeIcon.classList.remove('fa-sun');
+          themeIcon.classList.add('fa-moon');
+          themeIconDesktop.classList.remove('fa-sun');
+          themeIconDesktop.classList.add('fa-moon');
         }
-
-        themeToggle.addEventListener('click', () => {
-            html.classList.toggle('dark');
-            
-            if (html.classList.contains('dark')) {
-                localStorage.setItem('theme', 'dark');
-                themeIcon.classList.replace('fa-moon', 'fa-sun');
-            } else {
-                localStorage.setItem('theme', 'light');
-                themeIcon.classList.replace('fa-sun', 'fa-moon');
-            }
+      }
+      
+      // Navbar scroll effect
+      let isScrolled = false;
+      
+      function updateNavbar() {
+        const navbar = document.getElementById('navbar');
+        
+        if (window.scrollY > 50) {
+          if (!isScrolled) {
+            navbar.classList.add('navbar-scrolled');
+            isScrolled = true;
+          }
+        } else {
+          if (isScrolled) {
+            navbar.classList.remove('navbar-scrolled');
+            isScrolled = false;
+          }
+        }
+      }
+      
+      window.addEventListener('scroll', updateNavbar);
+      
+      // Smooth scroll to top
+      function scrollToTop() {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
         });
-
-        // Smooth scrolling for all anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    targetElement.scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                }
+      }
+      
+      // Smooth scroll for navigation links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            const offsetTop = target.offsetTop - 80; // Account for fixed navbar
+            window.scrollTo({
+              top: offsetTop,
+              behavior: 'smooth'
             });
+          }
+          
+          // Close mobile menu if open
+          const navbarCollapse = document.querySelector('.navbar-collapse');
+          if (navbarCollapse.classList.contains('show')) {
+            const bsCollapse = new bootstrap.Collapse(navbarCollapse);
+            bsCollapse.hide();
+          }
         });
-
-        // Listen for system theme changes
-        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
-            const newColorScheme = e.matches ? 'dark' : 'light';
-            if (!localStorage.getItem('theme')) { // Only change if user hasn't manually set preference
-                if (newColorScheme === 'dark') {
-                    html.classList.add('dark');
-                    themeIcon.classList.replace('fa-moon', 'fa-sun');
-                } else {
-$0
-                    html.classList.remove('dark');
-                    themeIcon.classList.replace('fa-sun', 'fa-moon');
-                }
-            }
+      });
+      
+      // Initialize fade-in animations on scroll
+      function animateOnScroll() {
+        const elements = document.querySelectorAll('.fade-in');
+        
+        elements.forEach(element => {
+          const elementTop = element.getBoundingClientRect().top;
+          const elementVisible = 150;
+          
+          if (elementTop < window.innerHeight - elementVisible) {
+            element.style.opacity = '1';
+            element.style.transform = 'translateY(0)';
+          }
         });
-
-
-tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        dark: {
-                            800: '#1e293b',
-                            900: '#0f172a',
-                        },
-                        primary: {
-                            500: '#4f46e5',
-                            600: '#4338ca',
-                        },
-                        secondary: {
-                            400: '#06b6d4',
-                            500: '#0891b2',
-                        }
-                    },
-                    transitionProperty: {
-                        'colors': 'color, background-color, border-color, fill, stroke',
-                    }
-                }
-            }
+      }
+      
+      // Set initial styles for fade-in elements
+      document.querySelectorAll('.fade-in').forEach(element => {
+        element.style.opacity = '0';
+        element.style.transform = 'translateY(20px)';
+        element.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+      });
+      
+      window.addEventListener('scroll', animateOnScroll);
+      window.addEventListener('load', animateOnScroll);
+      
+      // Auto-close navbar on mobile when clicking outside
+      document.addEventListener('click', function(event) {
+        const navbar = document.querySelector('.navbar');
+        const navbarToggler = document.querySelector('.navbar-toggler');
+        const navbarCollapse = document.querySelector('.navbar-collapse');
+        
+        if (!navbar.contains(event.target) && navbarCollapse.classList.contains('show')) {
+          const bsCollapse = new bootstrap.Collapse(navbarCollapse);
+          bsCollapse.hide();
         }
+      });
+ const year = new Date().getFullYear();
+document.getElementById("date").textContent = year;
+
